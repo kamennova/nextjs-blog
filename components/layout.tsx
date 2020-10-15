@@ -1,31 +1,41 @@
 import Link from "next/dist/client/link";
 import Head from "next/dist/next-server/lib/head";
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
 import { GithubIcon } from "./icons/Github";
 
-export default function Layout(props: { children: JSX.Element | (JSX.Element | undefined)[], title: string }) {
+export default function Layout(props: {
+    children: JSX.Element | (JSX.Element | undefined)[];
+    title: string;
+}) {
     return (
         <>
             <Head>
                 <title>{props.title} | Blog</title>
-                <link rel="icon" href="/favicon.ico"/>
+                <link rel="icon" href="/favicon.ico" />
             </Head>
             <MainHeader>
                 <nav className="main-nav">
                     <Links>
-                        <li><Link href={'/'}>Home</Link></li>
-                        <li><Link href={'/posts/my'}>My posts</Link></li>
-                        <li><Link href={'/posts/new'}>Add post</Link></li>
+                        <li>
+                            <Link href={"/"}>Blog</Link>
+                        </li>
+                        <li>
+                            <Link href={"/posts/my"}>My posts</Link>
+                        </li>
+                        <li>
+                            <Link href={"/posts/new"}>Add post</Link>
+                        </li>
                     </Links>
                 </nav>
             </MainHeader>
             <PageContainer>
-                <main>
-                    {props.children}
-                </main>
+                <main>{props.children}</main>
                 <Footer>
-                    <GithubIcon size={20}/><a href={'https://github.com/kamennova/nextjs-blog'}>nextjs-blog</a>
+                    <GithubIcon size={20} />
+                    <a href={"https://github.com/kamennova/nextjs-blog"}>
+                        nextjs-blog
+                    </a>
                     <FooterNote>No copyright intended </FooterNote>
                 </Footer>
             </PageContainer>
@@ -57,18 +67,21 @@ const Links = styled.ul`
     margin: 0;
     padding: 0;
     justify-content: center;
-    
+
     li {
-       margin-right: 65px;
-    
+        margin-right: 65px;
+
         &:last-of-type {
-        margin-right: 0;
+            margin-right: 0;
         }
     }
-    
+
     a {
         text-decoration: none;
         color: black;
+        font-weight: bold;
+        background-color: #eee;
+        padding: 0 3px;
     }
 `;
 const Footer = styled.footer`
@@ -76,6 +89,7 @@ const Footer = styled.footer`
     font-size: 14px;
     text-align: center;
 `;
+
 const FooterNote = styled.p`
     color: grey;
     display: inline;

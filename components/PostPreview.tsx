@@ -8,45 +8,58 @@ const PREVIEW_LEN = 200;
 
 export const PostPreviewItem = (props: PostPreview) => {
     const isCut = props.body !== undefined && props.body.length > PREVIEW_LEN;
-    const preview = (props.body !== undefined ? props.body.slice(0, PREVIEW_LEN) : '') + (isCut ? '...' : '');
+    const preview =
+        (props.body !== undefined ? props.body.slice(0, PREVIEW_LEN) : "") +
+        (isCut ? "..." : "");
 
     return (
         <PostLi>
-            <PostTitle><Link href={`/posts/${props.id}`}><a>{props.title}</a></Link></PostTitle>
-            <PostP>{preview} {isCut ? <Link prefetch href={`/posts/${props.id}`}>Read more</Link> : undefined}</PostP>
+            <PostTitle>
+                <Link href={`/posts/${props.id}`}>
+                    <a>{props.title}</a>
+                </Link>
+            </PostTitle>
+            <PostP>
+                {preview}{" "}
+                {isCut ? (
+                    <Link prefetch href={`/posts/${props.id}`}>
+                        Read more
+                    </Link>
+                ) : undefined}
+            </PostP>
             <DelimWrap>
-                <TildeIcon size={30}/>
+                <TildeIcon size={30} />
             </DelimWrap>
         </PostLi>
     );
 };
 
 const PostTitle = styled.h3`
-  color: red;
-  
-  a{
-  text-decoration: none;
-  color: black;
-  }
+    color: red;
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
 `;
 
 const PostLi = styled.li`
-   display: flex;
-   flex-direction: column;
-   margin-bottom: 20px;
-  
-   button {
-        margin-right: 40px;  
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+
+    button {
+        margin-right: 40px;
         margin-left: auto;
-   }
+    }
 `;
 const PostP = styled.p`
     line-height: 1.6;
     color: grey;
-    
-    a{
+
+    a {
         color: black;
-    text-decoration: underline;
+        text-decoration: underline;
     }
 `;
 

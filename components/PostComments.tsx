@@ -5,8 +5,11 @@ import { Comment } from "../types";
 import { Button } from "./buttons";
 import { TextArea } from "./inputs";
 
-export const PostComments = (props: { comments: Comment[], postComment: (b: string) => void }) => {
-    const [newComment, setNewComment] = useState('');
+export const PostComments = (props: {
+    comments: Comment[];
+    postComment: (b: string) => void;
+}) => {
+    const [newComment, setNewComment] = useState("");
     const [showTip, setShowTip] = useState(false);
 
     const postComment = () => {
@@ -14,7 +17,7 @@ export const PostComments = (props: { comments: Comment[], postComment: (b: stri
             setShowTip(true);
         } else {
             props.postComment(newComment);
-            setNewComment('');
+            setNewComment("");
         }
     };
 
@@ -30,10 +33,18 @@ export const PostComments = (props: { comments: Comment[], postComment: (b: stri
                 <Counter>{props.comments.length}</Counter>
             </CommentsHead>
             <CommentsList>
-                {props.comments.map(comment => <li><p>{comment.body}</p></li>)}
+                {props.comments.map((comment) => (
+                    <li>
+                        <p>{comment.body}</p>
+                    </li>
+                ))}
             </CommentsList>
             <form>
-                <TextArea setVal={updateComment} val={newComment} name={'comment'}/>
+                <TextArea
+                    setVal={updateComment}
+                    val={newComment}
+                    name={"comment"}
+                />
             </form>
             {showTip ? <p>Comment can not be empty!</p> : undefined}
             <CommentsFooter>
@@ -48,9 +59,9 @@ const CommentsList = styled.ul`
     padding-left: 20px;
 
     li {
-    border-bottom: 1px solid lightgrey;
+        border-bottom: 1px solid lightgrey;
     }
-    
+
     li:last-of-type {
         border-bottom: none;
     }
@@ -59,8 +70,8 @@ const CommentsList = styled.ul`
 const CommentsHead = styled.div`
     position: relative;
     margin-top: 30px;
-    
-    h3{
+
+    h3 {
         margin: 0;
     }
 `;

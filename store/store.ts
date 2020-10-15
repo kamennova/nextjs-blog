@@ -4,11 +4,11 @@ import { PostBase } from "../types";
 import { appReducers } from "./reducers";
 import { InitialShape, MyPostsState } from "./shape";
 
-const LocalStorageKey = 'NextJsBlog';
+const LocalStorageKey = "NextJsBlog";
 
 type LocalStorageState = {
-    publishedIds: number[],
-    drafts: PostBase[],
+    publishedIds: number[];
+    drafts: PostBase[];
 };
 
 export const loadState = (): MyPostsState | undefined => {
@@ -21,9 +21,12 @@ export const loadState = (): MyPostsState | undefined => {
 
         const parsed: LocalStorageState = JSON.parse(serialized);
 
-        return { published: { ids: parsed.publishedIds, items: [] }, drafts: parsed.drafts };
+        return {
+            published: { ids: parsed.publishedIds, items: [] },
+            drafts: parsed.drafts,
+        };
     } catch (err) {
-        console.log('Could not load local storage state', err);
+        console.log("Could not load local storage state", err);
 
         return undefined;
     }
@@ -34,7 +37,7 @@ const saveState = (state: { [key: string]: any }) => {
         const serializedState = JSON.stringify(state);
         localStorage.setItem(LocalStorageKey, serializedState);
     } catch (err) {
-        console.log('Could not save state', err);
+        console.log("Could not save state", err);
     }
 };
 

@@ -4,5 +4,5 @@ public
 tsconfig.json
 README.md
 .babelrc
-.eslintrc,json
+.eslintrc.json
 .prettierrc.json

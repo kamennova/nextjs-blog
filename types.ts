@@ -1,18 +1,18 @@
 export type PostBase = {
-    title: string,
-    body: string,
+    title: string;
+    body: string;
 };
 
 export type PostPreview = PostBase & {
-    id: number
-}
+    id: number;
+};
 
 export type Comment = {
-    id: number,
-    postId: number,
-    body: string,
+    id: number;
+    postId: number;
+    body: string;
 };
 
 export type Post = PostPreview & {
-    comments: Comment[]
+    comments: Comment[];
 };

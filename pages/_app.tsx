@@ -1,7 +1,8 @@
-import * as React from 'react'
-import { AppProps } from 'next/app'
+import { AppProps } from "next/dist/pages/_app";
+import * as React from "react";
 import { Provider } from "react-redux";
 import { createGlobalStyle } from "styled-components";
+import Main from "../components/Main";
 import store from "../store/store";
 
 const GlobalStyle = createGlobalStyle`
@@ -24,7 +25,13 @@ p{
 `;
 
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
-    return <Provider store={store}><GlobalStyle/><Component {...pageProps} /></Provider>
+    return (
+        <Provider store={store}>
+            <Main />
+            <GlobalStyle />
+            <Component {...pageProps} />
+        </Provider>
+    );
 };
 
 export default MyApp;

@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent } from "react";
 import styled from "styled-components";
 
 const InputStyle = `
@@ -18,17 +18,29 @@ const TextInputElem = styled.input`
 `;
 
 type InputProps<InputType> = {
-    val: string,
-    setVal: (s: ChangeEvent<InputType>) => void,
-    name: string,
+    val: string;
+    setVal: (s: ChangeEvent<InputType>) => void;
+    name: string;
 };
 
-export const TextArea = (props: InputProps<HTMLTextAreaElement> & { rows?: number }) => (
-    <TextAreaElem rows={props.rows} value={props.val} name={props.name} onChange={props.setVal}/>
+export const TextArea = (
+    props: InputProps<HTMLTextAreaElement> & { rows?: number }
+) => (
+    <TextAreaElem
+        rows={props.rows}
+        value={props.val}
+        name={props.name}
+        onChange={props.setVal}
+    />
 );
 
 export const TextInput = (props: InputProps<HTMLInputElement>) => (
-    <TextInputElem type={'text'} value={props.val} name={props.name} onChange={props.setVal}/>
+    <TextInputElem
+        type={"text"}
+        value={props.val}
+        name={props.name}
+        onChange={props.setVal}
+    />
 );
 
 const Fieldset = styled.fieldset`
@@ -43,7 +55,10 @@ const Label = styled.label`
     margin-bottom: 5px;
 `;
 
-export const FormControl = (props: { label: string, children: JSX.Element }) => (
+export const FormControl = (props: {
+    label: string;
+    children: JSX.Element;
+}) => (
     <Fieldset>
         <Label>{props.label}</Label>
         {props.children}
