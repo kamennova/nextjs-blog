@@ -2,24 +2,55 @@ import Link from "next/dist/client/link";
 import React from "react";
 import styled from "styled-components";
 import { PostPreview } from "../types";
-import { Button } from "./button";
+import { TildeIcon } from "./icons/Tilde";
+
+const PREVIEW_LEN = 200;
+
+export const PostPreviewItem = (props: PostPreview) => {
+    const isCut = props.body !== undefined && props.body.length > PREVIEW_LEN;
+    const preview = (props.body !== undefined ? props.body.slice(0, PREVIEW_LEN) : '') + (isCut ? '...' : '');
+
+    return (
+        <PostLi>
+            <PostTitle><Link href={`/posts/${props.id}`}><a>{props.title}</a></Link></PostTitle>
+            <PostP>{preview} {isCut ? <Link prefetch href={`/posts/${props.id}`}>Read more</Link> : undefined}</PostP>
+            <DelimWrap>
+                <TildeIcon size={30}/>
+            </DelimWrap>
+        </PostLi>
+    );
+};
 
 const PostTitle = styled.h3`
   color: red;
-`;
-const PostLi = styled.li`
-   margin-bottom: 20px;
-   border-bottom: 1px solid black;
-   padding: 20px 0;
-`;
-const PostDesc = styled.p`
-    line-height: 1.5;
+  
+  a{
+  text-decoration: none;
+  color: black;
+  }
 `;
 
-export const PostPreviewItem = (props: PostPreview) => (
-    <PostLi>
-        <PostTitle><Link href={`/posts/${props.id}`}><a>{props.title}</a></Link></PostTitle>
-        <p>{props.body}</p>
-        <Button><Link href={`/posts/${props.id}`}>Read more</Link></Button>
-    </PostLi>
-);
+const PostLi = styled.li`
+   display: flex;
+   flex-direction: column;
+   margin-bottom: 20px;
+  
+   button {
+        margin-right: 40px;  
+        margin-left: auto;
+   }
+`;
+const PostP = styled.p`
+    line-height: 1.6;
+    color: grey;
+    
+    a{
+        color: black;
+    text-decoration: underline;
+    }
+`;
+
+const DelimWrap = styled.div`
+    margin-top: 14px;
+    text-align: center;
+`;
