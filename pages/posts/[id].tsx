@@ -32,11 +32,9 @@ const PostPage = () => {
 
     return (
         <Layout title={post.title}>
-            <>
                 <PageTitle>{post.title}</PageTitle>
                 <p>{post.body}</p>
                 <PostComments comments={post.comments} postComment={postComment}/>
-            </>
         </Layout>
     );
 };

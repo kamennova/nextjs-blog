@@ -19,7 +19,6 @@ const HomeComponent = (props: { posts: PostPreview[], fetchPosts: () => void }) 
 
     return (
         <Layout title={'Blog'}>
-            <>
                 <HomeHead>
                     <PageTitle>
                         Welcome to The Blog!
@@ -37,7 +36,6 @@ const HomeComponent = (props: { posts: PostPreview[], fetchPosts: () => void }) 
                 <HomeFooter>
                     <Button><Link href={'/posts/new'}>Add post</Link></Button>
                 </HomeFooter>
-            </>
         </Layout>
     )
 };
