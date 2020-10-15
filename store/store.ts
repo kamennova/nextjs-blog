@@ -11,7 +11,7 @@ type LocalStorageState = {
     drafts: PostBase[],
 };
 
-const loadState = (): MyPostsState | undefined => {
+export const loadState = (): MyPostsState | undefined => {
     try {
         const serialized = localStorage.getItem(LocalStorageKey);
 
@@ -38,9 +38,13 @@ const saveState = (state: { [key: string]: any }) => {
     }
 };
 
-const store = createStore(appReducers,
-    { ...InitialShape, myPosts: { ...InitialShape.myPosts, ...loadState() } },
-    applyMiddleware(thunk)
-);
+const store = createStore(appReducers, InitialShape, applyMiddleware(thunk));
+
+store.subscribe(() => {
+    saveState({
+        publishedIds: store.getState().myPosts.published.ids,
+        drafts: store.getState().myPosts.drafts,
+    });
+});
 
 export default store;

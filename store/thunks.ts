@@ -1,7 +1,7 @@
 import { Action, ActionCreator, Dispatch } from "redux";
 import { ThunkAction } from "redux-thunk";
-import { createPost } from "../api";
-import { publishPost } from "./actions";
+import { createPost, getPosts } from "../api";
+import { publishPost, setPosts } from "./actions";
 import { StoreShape } from "./shape";
 
 export type ThunkResult<ValueType> = ActionCreator<ThunkAction<Promise<ValueType | undefined>, StoreShape, void, Action<void>>>;
@@ -13,3 +13,6 @@ export const thunkPublishPost: ThunkResult<number> = (title: string, body: strin
             return id;
         }
     });
+
+export const thunkFetchPosts: ThunkResult<Action> = () => async (dispatch: Dispatch) => await getPosts()
+    .then((posts) => dispatch(setPosts(posts)));

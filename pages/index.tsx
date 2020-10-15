@@ -1,11 +1,46 @@
 import Link from "next/dist/client/link";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 import styled from "styled-components";
-import { getPosts } from "../api";
-import { Button } from "../components/button";
+import { Button } from "../components/buttons";
 import Layout from "../components/layout";
 import { PostPreviewItem } from "../components/PostPreview";
+import { PageTitle } from "../components/Titles";
+import { StoreShape } from "../store/shape";
+import { thunkFetchPosts } from "../store/thunks";
 import { PostPreview } from "../types";
+
+const HomeComponent = (props: { posts: PostPreview[], fetchPosts: () => void }) => {
+    useEffect(() => {
+        if (props.posts.length === 0) {
+            props.fetchPosts();
+        }
+    }, []);
+
+    return (
+        <Layout title={'Blog'}>
+            <>
+                <HomeHead>
+                    <PageTitle>
+                        Welcome to The Blog!
+                    </PageTitle>
+
+                    <p className="description">
+                        Go read all the articles!
+                    </p>
+                </HomeHead>
+
+                <PostsList>
+                    {props.posts.map(post => <PostPreviewItem {...post} />)}
+                </PostsList>
+
+                <HomeFooter>
+                    <Button><Link href={'/posts/new'}>Add post</Link></Button>
+                </HomeFooter>
+            </>
+        </Layout>
+    )
+};
 
 const PostsList = styled.ul`
     margin-left: 0;
@@ -13,38 +48,21 @@ const PostsList = styled.ul`
     list-style: none;
 `;
 
-const BlogHead = styled.div`
+const HomeHead = styled.div`
     text-align:center;
 `;
 
-export default function Home() {
-    const [posts, setPosts] = useState<PostPreview[]>([]);
+const HomeFooter = styled.div`
+    padding: 30px 0;
+    text-align: center;
+`;
 
-    useEffect(() => {
-        const fetchPosts = async () => await getPosts().then(posts => setPosts(posts));
+const mapStateToProps = (state: StoreShape) => ({
+    posts: state.posts,
+});
 
-        fetchPosts();
-    }, []);
+const mapDispatchToProps = (dispatch: any) => ({
+    fetchPosts: () => dispatch(thunkFetchPosts())
+});
 
-    return (
-        <Layout title={'Blog | Home'}>
-            <>
-                <BlogHead>
-                    <h1 className="title">
-                        Welcome to The Blog!
-                    </h1>
-
-                    <p className="description">
-                        Read all the articles!
-                    </p>
-                </BlogHead>
-
-                <PostsList>
-                    {posts.map(post => <PostPreviewItem {...post} />)}
-                </PostsList>
-
-                <Button><Link href={'/posts/new'}>Add post</Link></Button>
-            </>
-        </Layout>
-    )
-}
+export default connect(mapStateToProps, mapDispatchToProps)(HomeComponent);
