@@ -1,0 +1,8 @@
+node_modules
+.next
+public
+tsconfig.json
+README.md
+.babelrc
+.eslintrc,json
+.prettierrc.json
