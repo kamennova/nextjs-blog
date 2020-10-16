@@ -8,6 +8,10 @@ export type ThunkResult<ValueType> = ActionCreator<
     ThunkAction<Promise<ValueType | undefined>, StoreShape, void, Action<void>>
 >;
 
+export const thunkFetchPosts: ThunkResult<Action> = () => async (
+    dispatch: Dispatch
+) => await getPosts().then((posts) => dispatch(setPosts(posts)));
+
 export const thunkPublishPost: ThunkResult<number> = (
     title: string,
     body: string
@@ -18,7 +22,3 @@ export const thunkPublishPost: ThunkResult<number> = (
             return id;
         }
     });
-
-export const thunkFetchPosts: ThunkResult<Action> = () => async (
-    dispatch: Dispatch
-) => await getPosts().then((posts) => dispatch(setPosts(posts)));

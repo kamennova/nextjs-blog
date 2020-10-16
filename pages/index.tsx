@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import { LinkButton } from "../components/buttons";
-import Layout from "../components/layout";
+import { LinkButton } from "../components/Buttons";
+import Layout from "../components/Layout";
 import { LoadIndicator } from "../components/LoadIndicator";
 import { PostPreviewItem } from "../components/PostPreview";
 import { PageTitle } from "../components/Titles";

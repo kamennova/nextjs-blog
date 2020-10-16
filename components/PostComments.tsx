@@ -3,8 +3,8 @@ import { ChangeEvent, useState } from "react";
 import styled from "styled-components";
 import { Colors } from "../Colors";
 import { Comment } from "../types";
-import { Button } from "./buttons";
-import { TextArea } from "./inputs";
+import { Button } from "./Buttons";
+import { TextArea } from "./Inputs";
 
 export const PostComments = (props: {
     comments: Comment[];
