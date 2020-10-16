@@ -6,7 +6,7 @@ const Loading = styled.div`
     padding: 200px 0;
 `;
 
-export const LoadIndicator = () => (
+export const LoadIndicator = (): JSX.Element => (
     <Loading>
         <SpinnerIcon />
     </Loading>

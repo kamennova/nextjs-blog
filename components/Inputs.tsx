@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from "react";
 import styled from "styled-components";
-import { Colors } from "../Colors";
+import { Colors } from "../ts/Colors";
 
 const InputStyle = `
     width: 100%;
@@ -31,7 +31,7 @@ type InputProps<InputType> = {
 
 export const TextArea = (
     props: InputProps<HTMLTextAreaElement> & { rows?: number }
-) => (
+): JSX.Element => (
     <TextAreaElem
         rows={props.rows}
         value={props.val}
@@ -40,7 +40,7 @@ export const TextArea = (
     />
 );
 
-export const TextInput = (props: InputProps<HTMLInputElement>) => (
+export const TextInput = (props: InputProps<HTMLInputElement>): JSX.Element => (
     <TextInputElem
         type={"text"}
         value={props.val}
@@ -64,7 +64,7 @@ const Label = styled.label`
 export const FormControl = (props: {
     label: string;
     children: JSX.Element;
-}) => (
+}): JSX.Element => (
     <Fieldset>
         <Label>{props.label}</Label>
         {props.children}

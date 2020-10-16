@@ -2,14 +2,14 @@ import Link from "next/dist/client/link";
 import Head from "next/dist/next-server/lib/head";
 import React from "react";
 import styled from "styled-components";
-import { Colors } from "../Colors";
+import { Colors } from "../ts/Colors";
 import { PageContainer } from "./Containers";
 import { GithubIcon } from "./icons/Github";
 
 export default function Layout(props: {
     children: JSX.Element | (JSX.Element | undefined)[];
     title: string;
-}) {
+}): JSX.Element {
     return (
         <>
             <Head>

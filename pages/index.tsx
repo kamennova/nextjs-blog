@@ -6,10 +6,10 @@ import Layout from "../components/Layout";
 import { LoadIndicator } from "../components/LoadIndicator";
 import { PostPreviewItem } from "../components/PostPreview";
 import { PageTitle } from "../components/Titles";
-import { useIsLoading } from "../loading";
+import { useIsLoading } from "../ts/loading";
 import { StoreShape } from "../store/shape";
 import { thunkFetchPosts } from "../store/thunks";
-import { PostPreview } from "../types";
+import { PostPreview } from "../ts/types";
 
 const HomeComponent = (props: {
     posts: PostPreview[];

@@ -1,4 +1,4 @@
-import { PostPreview } from "../types";
+import { PostPreview } from "../ts/types";
 
 export const PUBLISH_POST = "Publish_post",
     SET_POSTS = "Set_posts";

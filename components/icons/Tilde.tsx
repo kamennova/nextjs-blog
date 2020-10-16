@@ -1,6 +1,9 @@
 import React from "react";
 
-export const TildeIcon = (props: { size: number; color?: string }) => (
+export const TildeIcon = (props: {
+    size: number;
+    color?: string;
+}): JSX.Element => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
         aria-hidden="true"

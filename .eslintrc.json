@@ -20,7 +20,7 @@
     "import/prefer-default-export": 0,
     "quotes": 0,
     "object-literal-sort-keys": 0,
-    "indent": ["error", 4],
+    "indent": ["error", 4, { "SwitchCase": 1 }],
     "object-curly-spacing": ["error", "always"],
     "import/no-unresolved": 0,
     "import/no-namespace": 0,

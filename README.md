@@ -1,5 +1,7 @@
 ### NextJs Blog
 
+App: [https://nextjs-blog1.herokuapp.com/](https://nextjs-blog1.herokuapp.com/)
+
 #### Run project:
 
 1. Clone repo
@@ -24,7 +26,7 @@ Or download repository code via Github
 
         PORT=3000 npm start
         
-The project started on port 3000 in your console.
+The project started on port 3000: [http://localhost:3000]( http://localhost:3000).
         
 #### Test:
 

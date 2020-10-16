@@ -1,6 +1,6 @@
 import { Action, ActionCreator, Dispatch } from "redux";
 import { ThunkAction } from "redux-thunk";
-import { createPost, getPosts } from "../api";
+import { createPost, getPosts } from "../ts/api";
 import { publishPost, setPosts } from "./actions";
 import { StoreShape } from "./shape";
 

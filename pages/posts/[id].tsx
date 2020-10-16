@@ -1,14 +1,14 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { addComment, getPost } from "../../api";
+import { addComment, getPost } from "../../ts/api";
 import Layout from "../../components/Layout";
 import { LoadIndicator } from "../../components/LoadIndicator";
 import { PostComments } from "../../components/PostComments";
 import { PageTitle } from "../../components/Titles";
-import { useIsLoading } from "../../loading";
+import { useIsLoading } from "../../ts/loading";
 import { StoreShape } from "../../store/shape";
-import { Post, PostPreview } from "../../types";
+import { Post, PostPreview } from "../../ts/types";
 import { find } from "lodash/fp";
 
 const EmptyPost: Post = {

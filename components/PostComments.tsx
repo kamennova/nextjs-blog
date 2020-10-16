@@ -1,15 +1,15 @@
 import React from "react";
 import { ChangeEvent, useState } from "react";
 import styled from "styled-components";
-import { Colors } from "../Colors";
-import { Comment } from "../types";
+import { Colors } from "../ts/Colors";
+import { Comment } from "../ts/types";
 import { Button } from "./Buttons";
 import { TextArea } from "./Inputs";
 
 export const PostComments = (props: {
     comments: Comment[];
     postComment: (b: string) => void;
-}) => {
+}): JSX.Element => {
     const [newComment, setNewComment] = useState("");
     const [showTip, setShowTip] = useState(false);
 

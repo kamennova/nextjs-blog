@@ -12,7 +12,10 @@ export const getPost = async (id: number): Promise<Post> =>
 export const createPost = async (post: PostBase): Promise<number | undefined> =>
     axios.post(url + "/posts", post).then((res) => res.data.id);
 
-export const addComment = async (body: string, postId: number) =>
+export const addComment = async (
+    body: string,
+    postId: number
+): Promise<number> =>
     await axios
         .post(url + "/comments", {
             body,

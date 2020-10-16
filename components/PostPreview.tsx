@@ -1,13 +1,13 @@
 import Link from "next/dist/client/link";
 import React from "react";
 import styled from "styled-components";
-import { Colors } from "../Colors";
-import { PostPreview } from "../types";
+import { Colors } from "../ts/Colors";
+import { PostPreview } from "../ts/types";
 import { TildeIcon } from "./icons/Tilde";
 
 const PREVIEW_LEN = 200;
 
-export const PostPreviewItem = (props: PostPreview) => {
+export const PostPreviewItem = (props: PostPreview): JSX.Element => {
     const isCut = props.body !== undefined && props.body.length > PREVIEW_LEN;
     const preview =
         (props.body !== undefined ? props.body.slice(0, PREVIEW_LEN) : "") +

@@ -1,4 +1,4 @@
-import { PostPreview } from "../types";
+import { PostPreview } from "../ts/types";
 
 export type StoreShape = {
     posts: PostPreview[];

@@ -1,7 +1,7 @@
 import Link from "next/dist/client/link";
 import React from "react";
 import styled from "styled-components";
-import { Colors } from "../Colors";
+import { Colors } from "../ts/Colors";
 
 const BtnStyles = `
     background: ${Colors.primary};
@@ -44,11 +44,14 @@ type ButtonProps = {
     onclick?: () => void;
 };
 
-export const Button = (props: ButtonProps) => (
+export const Button = (props: ButtonProps): JSX.Element => (
     <Btn onClick={props.onclick}>{props.children}</Btn>
 );
 
-export const LinkButton = (props: { href: string; children: string }) => (
+export const LinkButton = (props: {
+    href: string;
+    children: string;
+}): JSX.Element => (
     <Link href={props.href} passHref>
         <StyledLink>{props.children}</StyledLink>
     </Link>
