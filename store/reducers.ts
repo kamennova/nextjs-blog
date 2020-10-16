@@ -1,12 +1,6 @@
-import {
-    ACCESS_LOCAL_STORAGE,
-    PostAction,
-    PUBLISH_POST,
-    SAVE_POST_DRAFT,
-    SET_POSTS,
-} from "./actions";
+import { orderBy } from "lodash/fp";
+import { PostAction, PUBLISH_POST, SET_POSTS } from "./actions";
 import { InitialShape, StoreShape } from "./shape";
-import { loadState } from "./store";
 
 export const appReducers = (
     state: StoreShape = InitialShape,
@@ -16,15 +10,11 @@ export const appReducers = (
 const posts = (state: StoreShape, action: PostAction): StoreShape => {
     switch (action.type) {
         case PUBLISH_POST:
-            return state;
-        case SAVE_POST_DRAFT:
-            return state;
+            return { ...state, posts: [action.post, ...state.posts] };
         case SET_POSTS:
-            return { ...state, posts: action.posts };
-        case ACCESS_LOCAL_STORAGE:
             return {
                 ...state,
-                myPosts: { ...InitialShape.myPosts, ...loadState() },
+                posts: orderBy(["id"], "desc", action.posts),
             };
         default:
             return state;

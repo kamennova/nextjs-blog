@@ -1,10 +1,10 @@
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { Button } from "../../components/buttons";
+import { Button } from "../../components/Buttons";
 import { Centering } from "../../components/Containers";
-import { FormControl, TextArea, TextInput } from "../../components/inputs";
-import Layout from "../../components/layout";
+import { FormControl, TextArea, TextInput } from "../../components/Inputs";
+import Layout from "../../components/Layout";
 import { thunkPublishPost } from "../../store/thunks";
 
 type PageProps = {

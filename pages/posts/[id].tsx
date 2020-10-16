@@ -1,12 +1,15 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
 import { addComment, getPost } from "../../api";
-import Layout from "../../components/layout";
+import Layout from "../../components/Layout";
 import { LoadIndicator } from "../../components/LoadIndicator";
 import { PostComments } from "../../components/PostComments";
 import { PageTitle } from "../../components/Titles";
 import { useIsLoading } from "../../loading";
-import { Post } from "../../types";
+import { StoreShape } from "../../store/shape";
+import { Post, PostPreview } from "../../types";
+import { find } from "lodash/fp";
 
 const EmptyPost: Post = {
     title: "",
@@ -15,7 +18,7 @@ const EmptyPost: Post = {
     id: 0,
 };
 
-export default function PostPage(): JSX.Element {
+const PostPage = (props: { posts: PostPreview[] }): JSX.Element => {
     const router = useRouter();
     const [post, setPost] = useState<Post>(EmptyPost);
 
@@ -31,6 +34,14 @@ export default function PostPage(): JSX.Element {
 
     useEffect(() => {
         const fetchPost = async () => {
+            const preview = find(
+                (post: PostPreview) => post.id === Number(router.query.id)
+            )(props.posts);
+
+            if (preview !== undefined) {
+                setPost({ ...preview, comments: [] });
+            }
+
             if (router.query.id !== undefined) {
                 await getPost(Number(router.query.id)).then((post) =>
                     setPost(post)
@@ -42,10 +53,16 @@ export default function PostPage(): JSX.Element {
 
     return (
         <Layout title={post.title}>
-            {isLoading ? <LoadIndicator/> : undefined}
+            {isLoading ? <LoadIndicator /> : undefined}
             <PageTitle>{post.title}</PageTitle>
             <p>{post.body}</p>
-            <PostComments comments={post.comments} postComment={postComment}/>
+            <PostComments comments={post.comments} postComment={postComment} />
         </Layout>
     );
-}
+};
+
+const mapStateToProps = (state: StoreShape) => ({
+    posts: state.posts,
+});
+
+export default connect(mapStateToProps)(PostPage);
