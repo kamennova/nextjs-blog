@@ -3,21 +3,25 @@ import { connect } from "react-redux";
 import styled from "styled-components";
 import { LinkButton } from "../components/buttons";
 import Layout from "../components/layout";
+import { LoadIndicator } from "../components/LoadIndicator";
 import { PostPreviewItem } from "../components/PostPreview";
 import { PageTitle } from "../components/Titles";
+import { useIsLoading } from "../loading";
 import { StoreShape } from "../store/shape";
 import { thunkFetchPosts } from "../store/thunks";
 import { PostPreview } from "../types";
 
 const HomeComponent = (props: {
     posts: PostPreview[];
-    fetchPosts: () => void;
+    fetchPosts: () => Promise<void>;
 }) => {
     useEffect(() => {
         if (props.posts.length === 0) {
-            props.fetchPosts();
+            props.fetchPosts().then(() => {});
         }
     }, []);
+
+    const isLoading = useIsLoading(props.posts.length, (l) => l !== 0);
 
     return (
         <Layout title={"Home"}>
@@ -26,6 +30,8 @@ const HomeComponent = (props: {
 
                 <p className="description">Go read all the articles!</p>
             </HomeHead>
+
+            {isLoading ? <LoadIndicator /> : undefined}
 
             <PostsList>
                 {props.posts.map((post) => (
