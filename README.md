@@ -28,7 +28,7 @@ Or download repository code via Github
         
 The project started on port 3000: [http://localhost:3000]( http://localhost:3000).
         
-#### Test:
+#### Run linters:
 
 1. Eslint
 
