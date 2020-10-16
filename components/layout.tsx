@@ -16,19 +16,19 @@ export default function Layout(props: {
                 <title>{props.title} | Blog</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <MainHeader>
-                <nav className="main-nav">
-                    <Links>
-                        <li>
-                            <Link href={"/"}>Blog</Link>
-                        </li>
-                        <li>
-                            <Link href={"/posts/new"}>New post</Link>
-                        </li>
-                    </Links>
-                </nav>
-            </MainHeader>
             <PageContainer>
+                <MainHeader>
+                    <nav>
+                        <Links>
+                            <li>
+                                <Link href={"/"}>Blog</Link>
+                            </li>
+                            <li>
+                                <Link href={"/posts/new"}>New post</Link>
+                            </li>
+                        </Links>
+                    </nav>
+                </MainHeader>
                 <main>{props.children}</main>
                 <Footer>
                     <LinkWrap>
@@ -53,6 +53,7 @@ const MainHeader = styled.header`
     border-bottom-right-radius: 50%;
     text-align: center;
     width: 650px;
+    max-width: 100%;
     margin: 0 auto 40px;
 `;
 

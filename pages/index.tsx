@@ -17,7 +17,7 @@ const HomeComponent = (props: {
 }) => {
     useEffect(() => {
         if (props.posts.length === 0) {
-            props.fetchPosts().then(() => {});
+            props.fetchPosts();
         }
     }, []);
 
