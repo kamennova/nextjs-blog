@@ -22,9 +22,9 @@ Or download repository code via Github
         
 5. Start project
 
-        npm start
+        PORT=3000 npm start
         
-The project started on port specified in your console.
+The project started on port 3000 in your console.
         
 #### Test:
 
@@ -43,3 +43,4 @@ The project started on port specified in your console.
 * Axios
 * Styled components
 * Eslint, Prettier
+* lodash/fp

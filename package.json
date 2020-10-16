@@ -5,7 +5,7 @@
     "scripts": {
         "dev": "next dev",
         "build": "next build",
-        "start": "next start",
+        "start": "next start -p $PORT",
         "prettier-check": "npx prettier --check .",
         "prettier-write": "npx prettier --write .",
         "eslint": "node_modules/.bin/eslint ./pages/ --ext .ts,.tsx"
