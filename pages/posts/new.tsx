@@ -1,10 +1,10 @@
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { MultipleButtons } from "../../components/buttons";
+import { Button } from "../../components/buttons";
+import { Centering } from "../../components/Containers";
 import { FormControl, TextArea, TextInput } from "../../components/inputs";
 import Layout from "../../components/layout";
-import { savePostDraft } from "../../store/actions";
 import { thunkPublishPost } from "../../store/thunks";
 
 type PageProps = {
@@ -41,12 +41,6 @@ const NewPostPage = (props: PageProps) => {
         }
     };
 
-    const trySave = () => {
-        if (validate()) {
-            console.log("saving!");
-        }
-    };
-
     return (
         <Layout title={"New post"}>
             <FormControl label={"title"}>
@@ -65,28 +59,15 @@ const NewPostPage = (props: PageProps) => {
                 />
             </FormControl>
             {tip.length > 0 ? <p>{tip}</p> : undefined}
-            <MultipleButtons
-                items={[
-                    {
-                        label: "Save draft",
-                        onClick: trySave,
-                        bgColor: "#eeeeee",
-                    },
-                    {
-                        label: "Publish",
-                        onClick: tryPublish,
-                        bgColor: "black",
-                        color: "white",
-                    },
-                ]}
-            />
+
+            <Centering>
+                <Button onclick={tryPublish}>Publish</Button>
+            </Centering>
         </Layout>
     );
 };
 
 const mapDispatchToProps = (dispatch: any) => ({
-    saveDraft: (title: string, body: string) =>
-        dispatch(savePostDraft({ title, body })),
     publish: (title: string, body: string) =>
         dispatch(thunkPublishPost(title, body)),
 });

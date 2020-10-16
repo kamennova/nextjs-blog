@@ -2,6 +2,8 @@ import Link from "next/dist/client/link";
 import Head from "next/dist/next-server/lib/head";
 import React from "react";
 import styled from "styled-components";
+import { Colors } from "../Colors";
+import { PageContainer } from "./Containers";
 import { GithubIcon } from "./icons/Github";
 
 export default function Layout(props: {
@@ -21,10 +23,7 @@ export default function Layout(props: {
                             <Link href={"/"}>Blog</Link>
                         </li>
                         <li>
-                            <Link href={"/posts/my"}>My posts</Link>
-                        </li>
-                        <li>
-                            <Link href={"/posts/new"}>Add post</Link>
+                            <Link href={"/posts/new"}>New post</Link>
                         </li>
                     </Links>
                 </nav>
@@ -32,10 +31,12 @@ export default function Layout(props: {
             <PageContainer>
                 <main>{props.children}</main>
                 <Footer>
-                    <GithubIcon size={20} />
-                    <a href={"https://github.com/kamennova/nextjs-blog"}>
-                        nextjs-blog
-                    </a>
+                    <LinkWrap>
+                        <GithubIcon size={20} />
+                        <a href={"https://github.com/kamennova/nextjs-blog"}>
+                            nextjs-blog
+                        </a>
+                    </LinkWrap>
                     <FooterNote>No copyright intended </FooterNote>
                 </Footer>
             </PageContainer>
@@ -43,17 +44,11 @@ export default function Layout(props: {
     );
 }
 
-const PageContainer = styled.div`
-    width: 700px;
-    max-width: 100%;
-    margin: 0 auto;
-`;
-
 const MainHeader = styled.header`
     padding: 15px 20px 24px;
-    border-right: 2px solid black;
-    border-left: 2px solid black;
-    border-bottom: 2px solid black;
+    border-right: 2px solid ${Colors.grey};
+    border-left: 2px solid ${Colors.grey};
+    border-bottom: 2px solid ${Colors.grey};
     border-bottom-left-radius: 50%;
     border-bottom-right-radius: 50%;
     text-align: center;
@@ -80,32 +75,46 @@ const Links = styled.ul`
         text-decoration: none;
         color: black;
         font-weight: bold;
-        background-color: #eee;
         padding: 0 3px;
     }
 `;
+
+const LinkWrap = styled.span`
+    display: flex;
+    justify-content: center;
+    padding: 3px 0;
+
+    a {
+        margin-left: 5px;
+        color: black;
+    }
+`;
+
 const Footer = styled.footer`
+    display: flex;
+    align-content: center;
+    justify-content: center;
     padding: 40px 0;
     font-size: 14px;
     text-align: center;
 `;
 
 const FooterNote = styled.p`
+    position: relative;
     color: grey;
     display: inline;
-    margin-left: 15px; 
+    margin: 0 0 0 30px;
     text-align: center;
-    position: relative;
-    
-    &::before {
-        content: '',
-        
+
+    &:after {
+        content: "";
+
         display: block;
         position: absolute;
-        left: -10px;
-        top: 0;
-        width: 1px;
-        height: 14px;
-        background: grey;
+        left: -17px;
+        top: 10px;
+        background: black;
+        width: 5px;
+        height: 2px;
     }
 `;

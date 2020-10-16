@@ -1,6 +1,7 @@
 import React from "react";
 import { ChangeEvent, useState } from "react";
 import styled from "styled-components";
+import { Colors } from "../Colors";
 import { Comment } from "../types";
 import { Button } from "./buttons";
 import { TextArea } from "./inputs";
@@ -59,7 +60,7 @@ const CommentsList = styled.ul`
     padding-left: 20px;
 
     li {
-        border-bottom: 1px solid lightgrey;
+        border-bottom: 1px solid ${Colors.grey};
     }
 
     li:last-of-type {
@@ -86,7 +87,7 @@ const Counter = styled.span`
     right: 0;
     top: 0;
     display: inline-block;
-    background-color: grey;
+    background-color: ${Colors.primary};
     color: white;
     padding: 4px;
     border-radius: 3px;

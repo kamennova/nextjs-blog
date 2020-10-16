@@ -1,12 +1,18 @@
 import React, { ChangeEvent } from "react";
 import styled from "styled-components";
+import { Colors } from "../Colors";
 
 const InputStyle = `
     width: 100%;
-    border: 2px solid lightgrey;
+    border: 2px solid ${Colors.grey};
     padding: 5px 7px;
     border-radius: 3px;
     font-size: 17px;
+    transition: border-color 0.2s linear;
+    
+    &:hover {
+        border-color: ${Colors.primary}
+    }
 `;
 
 const TextAreaElem = styled.textarea`

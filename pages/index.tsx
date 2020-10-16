@@ -20,7 +20,7 @@ const HomeComponent = (props: {
     }, []);
 
     return (
-        <Layout title={"Blog"}>
+        <Layout title={"Home"}>
             <HomeHead>
                 <PageTitle>Welcome to The Blog!</PageTitle>
 
@@ -42,7 +42,7 @@ const HomeComponent = (props: {
 
 const PostsList = styled.ul`
     margin-left: 0;
-    padding: 0;
+    padding: 30px 0 0;
     list-style: none;
 `;
 

@@ -1,6 +1,7 @@
 import Link from "next/dist/client/link";
 import React from "react";
 import styled from "styled-components";
+import { Colors } from "../Colors";
 import { PostPreview } from "../types";
 import { TildeIcon } from "./icons/Tilde";
 
@@ -27,15 +28,14 @@ export const PostPreviewItem = (props: PostPreview) => {
                     </Link>
                 ) : undefined}
             </PostP>
-            <DelimWrap>
-                <TildeIcon size={30} />
-            </DelimWrap>
+            <PostDelimiter />
         </PostLi>
     );
 };
 
 const PostTitle = styled.h3`
-    color: red;
+    margin-top: 0;
+    margin-bottom: 10px;
 
     a {
         text-decoration: none;
@@ -46,7 +46,7 @@ const PostTitle = styled.h3`
 const PostLi = styled.li`
     display: flex;
     flex-direction: column;
-    margin-bottom: 20px;
+    padding: 20px 0 10px;
 
     button {
         margin-right: 40px;
@@ -64,6 +64,34 @@ const PostP = styled.p`
 `;
 
 const DelimWrap = styled.div`
+    position: relative;
     margin-top: 14px;
     text-align: center;
+
+    &:before,
+    &:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin: auto 0;
+
+        height: 1px;
+        width: 40%;
+        background: ${Colors.grey};
+    }
+
+    &:after {
+        right: 0;
+    }
+
+    &:before {
+        left: 0;
+    }
 `;
+
+const PostDelimiter = () => (
+    <DelimWrap>
+        <TildeIcon size={30} />
+    </DelimWrap>
+);

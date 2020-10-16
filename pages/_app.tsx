@@ -21,12 +21,20 @@ p{
 * {
     box-sizing: border-box;
 }
+
+a {
+    transition: opacity 0.2s linear;
+}
+
+a:hover {
+    opacity: 0.6;
+}
 `;
 
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
     return (
         <Provider store={store}>
-            <GlobalStyle/>
+            <GlobalStyle />
             <Component {...pageProps} />
         </Provider>
     );
